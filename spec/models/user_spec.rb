@@ -31,4 +31,28 @@ describe User do
     @valid_user = create(:user,:first_name=>"validuser")
   end
 
+  it "this will validate presence of display name or not" do
+    @valid_user.display_name = " "
+    @valid_user.should have(1).error_on(:display_name)
+  end
+
+
+  it "this will validate presence of user id or not" do
+    @valid_user.first_name = nil
+    @valid_user.should have(1).error_on(:first_name)
+  end
+
+  it "this will validate presence of email or not" do
+    @valid_user.email = nil
+    @valid_user.should have(3).error_on(:email)
+  end
+
+  it "this will validate email format" do
+    @valid_user.email = "nil.com"
+    @valid_user.should have(2).error_on(:email)
+  end
+
+#  #Validation Test case end
+
+
 end
