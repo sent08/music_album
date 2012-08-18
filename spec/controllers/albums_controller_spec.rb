@@ -36,4 +36,33 @@ describe AlbumsController do
     end
   end
 
+  describe "GET 'index' " do
+    it "should be successful" do
+      user = create(:user)
+      visit albums_path
+      fill_in "user_session_email", :with => user.email
+      fill_in "user_session_password", :with => "password"
+      click_button "Login"
+      get 'index'
+      response.should be_success
+    end
+  end
+
+
+  describe "Get search 'index" do
+    it"should return one album" do
+      create(:album, :user => mock_model(User, :id => 1))
+      get(:index, :search => "sample")
+      response.should be_success
+      assigns[:albums].should have(1).items
+    end
+
+    it"should return zero album" do
+      create(:album, :user => mock_model(User, :id => 1))
+      get(:index, :search => "nothing")
+      response.should be_success
+      assigns[:albums].should be_empty
+    end
+  end
+
 end
