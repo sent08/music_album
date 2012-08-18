@@ -1,12 +1,13 @@
 MusicAlbum::Application.routes.draw do
-    get "user_sessions/new"
+  get "user_sessions/new"
 
   resources :user_sessions
-
+  resources :users
+  resources :albums
   root :to => "user_sessions#new"
   match 'login' => "user_sessions#new",      :as => :signin
   match 'logout' => "user_sessions#destroy", :as => :signout
-
+  match 'home' => "albums#index", :as => :home
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

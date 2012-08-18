@@ -1,0 +1,8 @@
+#show_album
+  .float_left= image_tag @album.album_cover.url(:original, false)
+  .float_left
+    %div= link_to @album.title, album_path(@album)
+    %div= @album.description
+  %audio{:controls => "controls"}
+    %source{:src => @album.album.url, :type => @album.album_content_type}
+    Your browser does not support the audio element.

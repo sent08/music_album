@@ -1,0 +1,23 @@
+#album_panel
+  %h1 New Album
+
+  = form_for @album, :url => {:action => "create"}, :html => { :multipart => true } do |f|
+    = f.error_messages
+    %div
+      = f.label :title
+    %div
+      = f.text_field :title
+    %div
+      = f.label :description
+    %div
+      = f.text_area :description, :cols => 40, :rows => 5
+    %div
+      = f.label :album
+    %div
+      = f.file_field :album
+    %div
+      = f.label :album_cover
+    %div
+      = f.file_field :album_cover
+    %div
+      = f.submit "Create Album"

@@ -1,0 +1,13 @@
+- if @albums.present?
+  - @albums.each do |album|
+    #album
+      .float_left= image_tag album.album_cover.url(:thumb, false), :width => "64", :height => "64"
+      .float_left
+        %div= link_to album.title, album_path(album)
+        %div= link_to "Delete", album_path(album), :method => :delete
+
+      %audio{:controls => "controls"}
+        %source{:src => album.album.url, :type => album.album_content_type}
+        Your browser does not support the audio element.
+- else
+  == No music found
