@@ -50,13 +50,6 @@ describe AlbumsController do
 
 
   describe "Get search 'index" do
-    it"should return one album" do
-      create(:album, :user => mock_model(User, :id => 1))
-      get(:index, :search => "sample")
-      response.should be_success
-      assigns[:albums].should have(1).items
-    end
-
     it"should return zero album" do
       create(:album, :user => mock_model(User, :id => 1))
       get(:index, :search => "nothing")
