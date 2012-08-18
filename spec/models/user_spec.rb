@@ -54,5 +54,24 @@ describe User do
 
 #  #Validation Test case end
 
+  it "returns album created by user" do
+    @sam =create(:user)
+    @sam.albums.should be_empty
+  end
+
+  it "returns album created by user" do
+    @sam =create(:user)
+    @album = create(:album, :user => @sam)
+    @album.user_id.should eql @sam.id
+    @sam.albums.should have(1).items
+  end
+
+  it "destory user should delete albums" do
+    count = Album.count
+    @sam =create(:user)
+    create(:album, :user => @sam)
+    @sam.destroy
+    Album.all.should have(count.to_i).items
+  end
 
 end

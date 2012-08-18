@@ -18,7 +18,7 @@ FactoryGirl.define do
     f.title "Sample Album"
     f.description "My first sample album"
     f.album { fixture_file_upload('/sample.mp3', 'audio/mpeg') }
-    f.album_cover { fixture_file_upload('/sample.JPG', 'image/jpeg') }
+#    f.album_cover { fixture_file_upload('/sample.JPG', 'image/jpeg') }
   end
 
 end
