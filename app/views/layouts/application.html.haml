@@ -1,0 +1,49 @@
+<!doctype html>
+%html{:lang => "en"}
+  %head
+    %meta{:charset => "utf-8"}
+    %meta{:content => "width=device-width; initial-scale=1.0", :name => "viewport"}
+    %title MusicAlbum
+    = stylesheet_link_tag :all
+    = javascript_include_tag :defaults
+    = csrf_meta_tag
+  %body
+    #container
+      .music
+        .header
+          %div.head_content.header_footer
+            %div.logo.float_left
+              == Music Album
+            .user_links.float_right
+              - if current_user.present?
+                == Welcome #{current_user.display_name}
+              - else
+                = link_to("Signup", new_user_path)
+            .clear
+        .clear
+        - if flash[:notice].present?
+          .flash
+            = flash[:notice]
+        .header_menu
+          .top_menu
+            .active= link_to("Home", home_path)
+          - if current_user.present?
+            .top_menu
+              .active= link_to("Add Album", new_album_path)
+            .top_menu
+              .active= link_to("Logout", signout_path)
+            .top_menu.search
+              - form_tag(home_path, :method => :get) do
+                = text_field_tag :search, params[:search]
+                = submit_tag "Search"
+          - else
+            .top_menu
+              .active= link_to("Login", signin_path)
+        .clear
+        .content
+          .home
+            .home_left
+              = yield
+        .clear
+        .footer
+          .footer_content

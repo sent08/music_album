@@ -1,0 +1,15 @@
+#login_panel
+  %h1 Login
+
+  = form_for @user_session, :url => {:action => "create"} do |f|
+    = f.error_messages
+    %div
+      = f.label :email
+    %div
+      = f.text_field :email
+    %div
+      = f.label :password
+    %div
+      = f.password_field :password
+    %div
+      = f.submit "Login"
