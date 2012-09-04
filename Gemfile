@@ -17,3 +17,4 @@ group :development, :test do
   gem 'factory_girl_rails', '~> 1.1'
   gem 'shoulda-matchers'
 end
+gem 'pg'
